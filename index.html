@@ -44,7 +44,7 @@
       if (e.detail.type === 'VKWebAppViewHide') {
         // Действия при переключении из игры или мини приложения
         // myUnityInstance.SendMesage('Music', 'StopAllMusic');
-        myUnityInstance.Quit();
+        window.close();
       }
     });
 
