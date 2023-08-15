@@ -43,14 +43,15 @@
     vkBridge.subscribe((e) => {
       if (e.detail.type === 'VKWebAppViewHide') {
         // Действия при переключении из игры или мини приложения
-        myUnityInstance.SendMessage('Music', 'StopAllMusic');
+        // myUnityInstance.SendMesage('Music', 'StopAllMusic');
+        myUnityInstance.Quit();
       }
     });
 
     vkBridge.subscribe((e) => {
       if (e.detail.type === 'VKWebAppViewRestore') {
         // Действия при восстановлении экрана игры или мини приложения
-        myUnityInstance.SendMessage('Music', 'StartAllMusic');
+        // myUnityInstance.SendMessage('Music', 'StartAllMusic');
       }
     });
 
