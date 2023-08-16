@@ -30,7 +30,8 @@
 
     vkBridge.send('VKWebAppShowBannerAd', {
       banner_location: 'bottom',
-      layout_type: 'resize'
+      layout_type: 'resize',
+      can_close: false
     }).then((data) => { 
       if (data.result) {
         // Баннерная реклама отобразилась
@@ -43,24 +44,14 @@
     vkBridge.subscribe((e) => {
       if (e.detail.type === 'VKWebAppViewHide') {
         // Действия при переключении из игры или мини приложения
-        // myUnityInstance.SendMesage('Music', 'StopAllMusic');
-        vkBridge.send('VKWebAppClose', {
-          status: 'success',
-        }).then((data) => { 
-          if (data.status) {
-            // Событие отправлено
-          }
-        }).catch((error) => {
-          // Ошибка
-          console.log(error);
-      });
+        myUnityInstance.SendMessage('Music', 'StopAllMusic');
       }
     });
 
     vkBridge.subscribe((e) => {
       if (e.detail.type === 'VKWebAppViewRestore') {
         // Действия при восстановлении экрана игры или мини приложения
-        // myUnityInstance.SendMessage('Music', 'StartAllMusic');
+        myUnityInstance.SendMessage('Music', 'StartAllMusic');
       }
     });
 
