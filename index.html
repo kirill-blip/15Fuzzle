@@ -68,23 +68,26 @@
       console.log(error);
     });
 
-    let result;
 
-    vkBridge.send('VKWebAppStorageGet', {
-        keys: [
-          'example',
-      ]}).then((data) => { 
-          if (data.keys) {
-            result = new String(data.keys[0].value);
-            console.log("Result: " + result);
-            console.log("In Then: " + data.keys[0].value);
-          }
-        }).catch((error) => {
-          // Ошибка
-          console.log(error);
-      });
+    function getResult() {
+      vkBridge.send('VKWebAppStorageGet', {
+          keys: [
+            'example',
+        ]}).then((data) => { 
+            if (data.keys) {
+              let result = new String(data.keys[0].value);
+              console.log("Result: " + result);
+              console.log("In Then: " + data.keys[0].value);
 
-    console.log(result);
+              return result;
+            }
+          }).catch((error) => {
+            // Ошибка
+            console.log(error);
+        });
+    }
+
+    console.log(getResult());
     // window.addEventListener("load", onResize);
     // window.addEventListener("resize", onResize);
     const mainElement = document.getElementById("unity-container");
