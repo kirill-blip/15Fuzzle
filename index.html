@@ -83,7 +83,7 @@
     console.log("Progress is " + getProgress());
 
     function getProgress() {
-      var result = "0";
+      let result = "0";
 
       vkBridge.send('VKWebAppStorageGet', {
         keys: [
@@ -91,13 +91,14 @@
       ]}).then((data) => { 
           if (data.keys) {
             result = data.keys[0].value;
-            return result;
           }
         }).catch((error) => {
           // Ошибка
           console.log(error);
-      });
-    }
+        });
+
+        return result;
+      }
 
     // window.addEventListener("load", onResize);
     // window.addEventListener("resize", onResize);
