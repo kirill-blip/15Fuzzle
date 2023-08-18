@@ -58,18 +58,23 @@
     console.log("Progress is " + getProgress());
 
     function getProgress() {
+      var result = "0";
+
       vkBridge.send('VKWebAppStorageGet', {
         keys: [
           '3',
       ]}).then((data) => { 
           if (data.keys) {
+
+            result = data.keys[0].value;
             // Значения получены
-            return data.keys[0].value;
           }
-      }).catch((error) => {
-        // Ошибка
-        console.log(error);
-      });
+        }).catch((error) => {
+          // Ошибка
+          console.log(error);
+        });
+
+        return result;
     }
 
     // window.addEventListener("load", onResize);
