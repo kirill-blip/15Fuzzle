@@ -55,6 +55,22 @@
       }
     });
 
+    console.log("Progress is " + getProgress());
+
+    function getProgress() {
+      vkBridge.send('VKWebAppStorageGet', {
+        keys: [
+          '3',
+      ]}).then((data) => { 
+          if (data.keys) {
+            // Значения получены
+            return data.keys[0].value;
+          }
+      }).catch((error) => {
+        // Ошибка
+        console.log(error);
+      });
+    }
 
     // window.addEventListener("load", onResize);
     // window.addEventListener("resize", onResize);
