@@ -55,6 +55,24 @@
       }
     });
 
+    // Подписывается на события, отправленные нативным клиентом
+    vkBridge.subscribe(event => {
+      if (!event.detail) {
+        return;
+      }
+
+      switch(event.detail.type) {
+        case 'VKWebAppStorageGetResult':
+          if (event.detail.data.result) {
+            // Обработка события в случае успеха
+            console.log("It's works: " + event.detail.data.keys[0].value);
+          } else {
+            // Ошибка
+          }
+        break;
+      }
+    });
+
     vkBridge.send('VKWebAppStorageSet', {
       key: 'example',
       value: '55'
@@ -80,26 +98,6 @@
           console.log(error);
       });
 
-    console.log("Progress is " + getProgress());
-
-    function getProgress() {
-      let result = "0";
-
-      vkBridge.send('VKWebAppStorageGet', {
-        keys: [
-          'example',
-      ]}).then((data) => { 
-          if (data.keys) {
-            console.log("In function " + data.keys[0].value);
-            result = data.keys[0].value;
-          }
-        }).catch((error) => {
-          // Ошибка
-          console.log(error);
-        });
-
-        return result;
-      }
 
     // window.addEventListener("load", onResize);
     // window.addEventListener("resize", onResize);
