@@ -61,11 +61,24 @@
     }).then((data) => { 
       if (data.result) {
         // Значение переменной задано
+        console.log("Data is 55");
       }
     }).catch((error) => {
       // Ошибка
       console.log(error);
     });
+
+    vkBridge.send('VKWebAppStorageGet', {
+        keys: [
+          'example',
+      ]}).then((data) => { 
+          if (data.keys) {
+            console.log("It is not function " + data.keys[0].value);
+          }
+        }).catch((error) => {
+          // Ошибка
+          console.log(error);
+      });
 
     console.log("Progress is " + getProgress());
 
@@ -78,13 +91,12 @@
       ]}).then((data) => { 
           if (data.keys) {
             result = data.keys[0].value;
+            return result;
           }
         }).catch((error) => {
           // Ошибка
           console.log(error);
-        });
-
-        return result;
+      });
     }
 
     // window.addEventListener("load", onResize);
