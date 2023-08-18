@@ -55,6 +55,18 @@
       }
     });
 
+    vkBridge.send('VKWebAppStorageSet', {
+      key: 'example',
+      value: '55'
+    }).then((data) => { 
+      if (data.result) {
+        // Значение переменной задано
+      }
+    }).catch((error) => {
+      // Ошибка
+      console.log(error);
+    });
+
     console.log("Progress is " + getProgress());
 
     function getProgress() {
@@ -62,12 +74,10 @@
 
       vkBridge.send('VKWebAppStorageGet', {
         keys: [
-          '3',
+          'example',
       ]}).then((data) => { 
           if (data.keys) {
-
             result = data.keys[0].value;
-            // Значения получены
           }
         }).catch((error) => {
           // Ошибка
