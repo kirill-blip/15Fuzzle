@@ -75,7 +75,7 @@
           'example',
       ]}).then((data) => { 
           if (data.keys) {
-            result = data.keys[0].value;
+            result = new String(data.keys[0].value);
             console.log("In Then: " + data.keys[0].value);
           }
         }).catch((error) => {
