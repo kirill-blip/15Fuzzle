@@ -90,6 +90,7 @@
           'example',
       ]}).then((data) => { 
           if (data.keys) {
+            console.log("In function " + data.keys[0].value);
             result = data.keys[0].value;
           }
         }).catch((error) => {
