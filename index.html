@@ -76,6 +76,7 @@
       ]}).then((data) => { 
           if (data.keys) {
             result = new String(data.keys[0].value);
+            console.log("Result: " + result);
             console.log("In Then: " + data.keys[0].value);
           }
         }).catch((error) => {
@@ -83,7 +84,7 @@
           console.log(error);
       });
 
-      console.log(result);
+    console.log(result);
     // window.addEventListener("load", onResize);
     // window.addEventListener("resize", onResize);
     const mainElement = document.getElementById("unity-container");
